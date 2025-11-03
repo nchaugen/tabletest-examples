@@ -16,14 +16,20 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.github.nchaugen</groupId>
+            <artifactId>tabletest-junit</artifactId>
+            <version>0.5.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>6.0.0</version>
         </dependency>
         <dependency>
-            <groupId>io.github.nchaugen</groupId>
-            <artifactId>tabletest-junit</artifactId>
-            <version>0.5.3</version>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-reporting</artifactId>
+            <version>6.0.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -37,7 +43,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.3</version>
+                <version>3.5.4</version>
                 <dependencies>
                     <dependency>
                         <groupId>me.fabriciorby</groupId>
@@ -46,12 +52,19 @@
                     </dependency>
                 </dependencies>
                 <configuration>
+                    <properties>
+                        <configurationParameters>
+                            junit.platform.reporting.open.xml.enabled = true
+                            junit.platform.reporting.output.dir = target/surefire-reports
+                        </configurationParameters>
+                    </properties>
                     <reportFormat>plain</reportFormat>
                     <consoleOutputReporter>
                         <disable>true</disable>
                     </consoleOutputReporter>
                     <statelessTestsetInfoReporter
                             implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoTreeReporter">
+                        <hideResultsOnSuccess>true</hideResultsOnSuccess>
                     </statelessTestsetInfoReporter>
                 </configuration>
             </plugin>
