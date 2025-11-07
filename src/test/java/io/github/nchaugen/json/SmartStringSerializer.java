@@ -18,7 +18,7 @@ public class SmartStringSerializer extends JsonSerializer<String> {
     }
 
     private boolean isForcedString(String value) {
-        return value != null && value.startsWith("\"") && value.endsWith("\"");
+        return value != null && value.length() > 1 && value.startsWith("\"") && value.endsWith("\"");
     }
 
     private boolean isBoolean(String value) {
