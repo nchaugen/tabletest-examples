@@ -12,6 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MapToJsonTest {
 
+    private static final ObjectMapper mapper = new ObjectMapper();
+
+    @BeforeAll
+    static void init() {
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(String.class, new SmartStringSerializer());
+        mapper.registerModule(module);
+    }
+
     @TableTest("""
         Map definition          | Expected JSON
         [string: abc]           | '{"string":"abc"}'
@@ -26,15 +35,6 @@ public class MapToJsonTest {
         assertEquals(expectedJson, convertedJson);
     }
 
-    private static final ObjectMapper mapper = new ObjectMapper();
-
-    @BeforeAll
-    static void init() {
-        SimpleModule module = new SimpleModule();
-        module.addSerializer(String.class, new SmartStringSerializer());
-        mapper.registerModule(module);
-    }
-
     @SuppressWarnings("unused")
     public static String toJson(Map<String, ?> map) {
         try {
@@ -43,4 +43,36 @@ public class MapToJsonTest {
             throw new RuntimeException(e);
         }
     }
+
+    @TableTest("""
+        Domain object           | Field        | Expected value
+        [string: abc]           | string       | abc
+        """)
+    void shouldConvertMapToDomainObjectViaJson(DomainObject object, String field, String expectedValue) {
+        try {
+            assertEquals(expectedValue, DomainObject.class.getMethod(field).invoke(object));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @SuppressWarnings({"unused", "ClassEscapesDefinedScope"})
+    public static DomainObject toDomainObject(String json) {
+        try {
+            return mapper.readValue(json, DomainObject.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+
+record DomainObject(
+    String string,
+    int integer,
+    double decimal,
+    boolean booleanValue,
+    String forcedString,
+    int[] list,
+    Map<String, Integer> object
+) {}
+
