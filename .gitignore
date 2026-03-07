@@ -34,3 +34,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Local Java version manager files
+.java-version
