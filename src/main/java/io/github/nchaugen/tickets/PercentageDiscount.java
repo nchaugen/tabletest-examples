@@ -1,15 +1,16 @@
 package io.github.nchaugen.tickets;
 
-import org.jspecify.annotations.NonNull;
-
 import java.math.BigDecimal;
 
 public record PercentageDiscount(long percentage, BigDecimal discountMultiplier) implements Discount {
 
     public PercentageDiscount(long percentage) {
+        this(percentage, calculateDiscountMultiplier(percentage));
+    }
+
+    private static BigDecimal calculateDiscountMultiplier(long percentage) {
         BigDecimal percentageFraction = BigDecimal.valueOf(percentage).movePointLeft(2);
-        BigDecimal discountMultiplier = BigDecimal.ONE.subtract(percentageFraction);
-        this(percentage, discountMultiplier);
+        return BigDecimal.ONE.subtract(percentageFraction);
     }
 
     @Override
@@ -18,7 +19,7 @@ public record PercentageDiscount(long percentage, BigDecimal discountMultiplier)
     }
 
     @Override
-    public @NonNull String toString() {
+    public String toString() {
         return percentage + "%";
     }
 }

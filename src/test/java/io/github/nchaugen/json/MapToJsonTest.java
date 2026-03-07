@@ -3,7 +3,8 @@ package io.github.nchaugen.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import io.github.nchaugen.tabletest.junit.TableTest;
+import org.tabletest.junit.TableTest;
+import org.tabletest.junit.TypeConverter;
 import org.junit.jupiter.api.BeforeAll;
 
 import java.util.Map;
@@ -35,7 +36,7 @@ public class MapToJsonTest {
         assertEquals(expectedJson, convertedJson);
     }
 
-    @SuppressWarnings("unused")
+    @TypeConverter
     public static String toJson(Map<String, ?> map) {
         try {
             return mapper.writeValueAsString(map);
@@ -56,7 +57,7 @@ public class MapToJsonTest {
         }
     }
 
-    @SuppressWarnings({"unused", "ClassEscapesDefinedScope"})
+    @TypeConverter
     public static DomainObject toDomainObject(String json) {
         try {
             return mapper.readValue(json, DomainObject.class);

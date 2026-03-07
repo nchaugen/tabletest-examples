@@ -1,0 +1,10 @@
+
+Column A        | Column B        | Column C                | Column D?
+"Quoted string" | Unquoted string | [List, of, strings]     | [key: value]
+"Quoted string" | Unquoted string | [[List], [of, strings]] | [key: [v1, v2]]
+"Quoted string" | Unquoted string | [List, "of, strings"]   | [key: "v1, v2"]
+"123"           | 123             | [ List, "of, strings" ] | [æøå: "v1, v2"]
+""              |                 | []                      | [:]
+// The following row is commented out
+// 0               | 123             | [a1, a2, a3]            | [a1: 123, a2: 125, a3: 126]
+''              | 'abc'           | [[:], [a: 1234], [:]]   | [aa: [a: '1', b: "2"], bb: [c: 3, d: 4]]
