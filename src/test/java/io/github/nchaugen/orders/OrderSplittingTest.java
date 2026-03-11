@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class OrderSplittingTest {
 
     @TableTest("""
-        Scenario                  | Cart                                                                                                                                                               | Inventory                                                                                                                             | Orders?
+        Scenario                  | Cart                                                                                                                                                                                     | Inventory                                                                                                                                                        | Orders?
         Mixing BOPIS and Delivery | [items: [[productId: ShirtA, quantity: 1, fulfillmentType: BOPIS, pickupLocationId: Store1], [productId: ShirtB, quantity: 1, fulfillmentType: DELIVERY, deliveryAddress: 'Main St 1']]] | [[locationId: Store1, inventory: [[productId: ShirtA, quantityAvailable: 5]]], [locationId: Megastore, inventory: [[productId: ShirtB, quantityAvailable: 10]]]] | [[orderId: Order1, lines: [[productId: ShirtA, quantity: 1, sourceLocationId: Store1]], sourceLocationId: Store1, fulfillmentType: BOPIS, shipTiming: PICKUP], [orderId: Order2, lines: [[productId: ShirtB, quantity: 1, sourceLocationId: Megastore]], sourceLocationId: Megastore, fulfillmentType: DELIVERY, destinationAddress: 'Main St 1', shipTiming: SHIP_NOW]]
         """)
     void shouldSplitOrdersForMixedFulfilment(Cart cartItems, Inventory inventory, List<Order> expectedOrders) {

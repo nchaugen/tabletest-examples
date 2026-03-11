@@ -70,9 +70,13 @@ open class KotlinNestedConverterLookupProbe {
         today      | tomorrow   | true
         today      | yesterday  | false
         2024-02-29 | 2024-03-01 | true
-            """
+        """
     )
-    fun shouldOverrideFallbackLocalDateConversion(thisDate: LocalDate, otherDate: LocalDate?, expectedIsBefore: Boolean) {
+    fun shouldOverrideFallbackLocalDateConversion(
+        thisDate: LocalDate,
+        otherDate: LocalDate?,
+        expectedIsBefore: Boolean
+    ) {
         assertEquals(expectedIsBefore, thisDate.isBefore(otherDate))
     }
 
@@ -121,6 +125,9 @@ open class KotlinNestedConverterLookupProbe {
                 1          | 1 1          | 1
                     """
             )
+            fun shouldReadTokens(left: String, middle: String, right: String) {
+
+            }
         }
     }
 
