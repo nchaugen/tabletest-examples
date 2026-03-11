@@ -23,7 +23,7 @@ public class MapToJsonTest {
     }
 
     @TableTest("""
-        Map definition          | Expected JSON
+        Map definition          | Expected JSON?
         [string: abc]           | '{"string":"abc"}'
         [integer: 123]          | '{"integer":123}'
         [decimal: 1.23]         | '{"decimal":1.23}'
@@ -46,7 +46,7 @@ public class MapToJsonTest {
     }
 
     @TableTest("""
-        Domain object           | Field        | Expected value
+        Domain object           | Field        | Expected value?
         [string: abc]           | string       | abc
         """)
     void shouldConvertMapToDomainObjectViaJson(DomainObject object, String field, String expectedValue) {
