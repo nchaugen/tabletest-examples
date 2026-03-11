@@ -1,6 +1,6 @@
 package io.github.nchaugen.docs;
 
-import io.github.nchaugen.tabletest.junit.TableTest;
+import org.tabletest.junit.TableTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
