@@ -30,8 +30,8 @@ public class CountPurchasesWithRelativeTimestampsTest {
         Scenario                         | Time of past purchases | Discount qualifying count?
         No previous purchases            | []                     | 0
         Purchase way outside window      | [T-60d]                | 0
-        Purchase just outside window     | [T-30d]                | 0
-        Purchase just inside window      | [T-29d23h59m59s]       | 1
+        Purchase just outside window     | [T-30d01s]             | 0
+        Purchase just inside window      | [T-30d]                | 1
         Multiple purchases inside window | [T-28d, T-27d]         | 2
         One inside, one not              | [T-45d, T-15d]         | 1
         """)
