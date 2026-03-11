@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <tabletest.version>1.0.0</tabletest.version>
+        <tabletest.version>1.0.1-SNAPSHOT</tabletest.version>
         <junit.version>6.0.1</junit.version>
         <junit.platform.version>6.0.1</junit.platform.version>
         <kotlin.version>2.2.0</kotlin.version>
@@ -156,6 +156,13 @@
             <id>probe-tests</id>
             <properties>
                 <surefire.groups>probe</surefire.groups>
+                <surefire.excludedGroups/>
+            </properties>
+        </profile>
+        <profile>
+            <id>snapshot-array-tests</id>
+            <properties>
+                <surefire.groups>snapshot</surefire.groups>
                 <surefire.excludedGroups/>
             </properties>
         </profile>

@@ -16,6 +16,7 @@ Help coding agents quickly understand this repo and make safe, focused changes.
   - Modern namespace (`org.tabletest...`): `src/test/java/io/github/nchaugen/examples/modern`, `src/test/kotlin/io/github/nchaugen/examples/modern`
   - Legacy namespace (`io.github.nchaugen.tabletest...`): `src/test/java/io/github/nchaugen/examples/legacy`, `src/test/kotlin/io/github/nchaugen/examples/legacy`
 - Manual probe tests (excluded by default): `src/test/java/io/github/nchaugen/examples/probe`
+- String-array table tests (opt-in profile): `src/test/java/io/github/nchaugen/examples/stringarraytable`
 - IDE/parser fixtures (never compiled by Maven): `ide-fixtures/`
 
 ## Build and Test Commands
@@ -23,6 +24,7 @@ Help coding agents quickly understand this repo and make safe, focused changes.
 - Default stable suite (green target): `mvn -B clean test`
 - Probe tests only: `mvn -B test -Pprobe-tests`
 - All tests (stable + probe): `mvn -B test -Pall-tests`
+- String-array table tests: `mvn -B test -Psnapshot-array-tests`
 - Override TableTest version locally: `mvn -B -Dtabletest.version=<version> clean test`
 
 ## Build/Dependency Notes
@@ -31,6 +33,7 @@ Help coding agents quickly understand this repo and make safe, focused changes.
 - Kotlin test compilation enabled via `kotlin-maven-plugin`
 - `tabletest.version` property controls `org.tabletest:tabletest-junit`
 - Surefire excludes `probe` tag by default; profiles control inclusion
+- `snapshot-array-tests` profile selects tests tagged `snapshot` from the standard test source tree
 
 ## Editing Guidance
 
