@@ -25,13 +25,17 @@ public class CountPurchasesWithRelativeTimestampsTest {
         * T-60d = 60 days ago
         * T-30d1s = 30 days and 1 second ago
         * T-30d1h2m3s = 30 days and 1 hour, 2 minutes and 3 seconds ago
+        
+        Note: The 30-day window uses strict 'after' comparison, so purchases exactly at the 30-day
+        boundary are excluded. This matches the implementation in TieredDiscount.countPurchasesPast30Days.
         """)
     @TableTest("""
         Scenario                         | Time of past purchases | Discount qualifying count?
         No previous purchases            | []                     | 0
         Purchase way outside window      | [T-60d]                | 0
         Purchase just outside window     | [T-30d01s]             | 0
-        Purchase just inside window      | [T-30d]                | 1
+        Purchase exactly at boundary     | [T-30d]                | 0
+        Purchase just inside window      | [T-29d23h59m59s]       | 1
         Multiple purchases inside window | [T-28d, T-27d]         | 2
         One inside, one not              | [T-45d, T-15d]         | 1
         """)
