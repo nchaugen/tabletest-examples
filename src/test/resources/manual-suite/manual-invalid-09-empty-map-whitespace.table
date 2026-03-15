@@ -1,0 +1,3 @@
+// expect diagnostic on next table: empty map whitespace
+Value|Expected?
+[: ]|x

@@ -1,0 +1,3 @@
+// expect diagnostic on next table: missing closing bracket
+Value|Expected?
+[1, 2|x

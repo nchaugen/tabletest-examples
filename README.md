@@ -40,8 +40,18 @@ String-array table suites (opt-in profile) live under:
     `List`, `Set`, `Map`, nested `List<List<...>>`, `Map<String, List<...>>`, `List<Map<...>>`, and `Map<String, Map<...>>`.
   - `LegacyJava8MultilineStringExampleTest` demonstrates legacy namespace usage with Java-8-style string concatenation.
 
+Manual IDE verification probes live under:
+
+- `src/test/java/io/github/nchaugen/examples/probe/manualsuite`
+- `src/test/kotlin/io/github/nchaugen/examples/probe/manualsuite`
+- `src/test/resources/manual-suite`
+
+These files are in real Maven test source/resource roots so IntelliJ and VS Code treat them as active test sources and resources. They are named `*Probe` and tagged `@Tag("probe")` so they compile during test-compile without joining the default stable test execution.
+
 ## IDE fixture files
 
 Syntax-highlighting and parser fixture files that are intentionally outside the Maven build live under:
 
 - `ide-fixtures/`
+
+Use `ide-fixtures/` for narrow parser/highlighting fixtures. Use the manual-suite files above when you want IDE functionality to activate in real test source/resource roots.

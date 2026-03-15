@@ -1,0 +1,25 @@
+// top comment before first table
+
+Scenario|Scalar value|Collection literal|Map literal
+bare scalar|hello|[]|[:]
+bare comma scalar|World, hello|[a, b]|[plain: other]
+bare colon scalar|key: value|[]|[plain: other]
+double quoted comma|"Hello, world"|[1,2,3]|[plain: other]
+single quoted pipe|'|'|{'|', ",", abc}|['key with spaces': value]
+  // middle comment with extra indent
+quoted whitespace|"  padded  "|[[1,2],[3,4]]|["key:colon": [left: [1,2], right: {3,4}]]
+quoted brackets|"[(x)]"|[{[a: 1]}, [[b]], {c}]|["[a]{b}(c),|": "(works)"]
+unicode mix|naïve résumé|[α, "beta gamma", 'δ']|[こんにちは: '😀', plain: other]
+
+empty quoted|""|{}|[plain: ""]
+trailing empty|''|[:]|[unquoted: value]
+
+// comment between tables
+
+Scenario|Quoted map key|Result?
+spaces and colon|["key with spaces": value]|ok
+brackets braces parens|["[a]{b}(c),|": "(works)"]|ok
+unicode|[こんにちは: '😀', plain: other]|ok
+quoted pipe in key|["suc|c e|s s": 3]|ok
+
+// bottom comment after second table
