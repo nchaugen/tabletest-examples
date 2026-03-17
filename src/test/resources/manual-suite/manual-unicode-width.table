@@ -1,0 +1,27 @@
+// unicode width probe for manual TableTest formatting checks
+// format document in VS Code and compare where the next pipe lands
+
+Scenario|Value|Result?
+ascii|plain text|ok
+accented latin|naïve résumé|ok
+greek|αβγδε|ok
+cyrillic|Привет мир|ok
+arabic|مرحبا بالعالم|ok
+hebrew|שלום עולם|ok
+hiragana|こんにちは|ok
+katakana|コンニチハ|ok
+cjk ideographs|漢字仮名交じり文|ok
+hangul|안녕하세요|ok
+combining marks|ééé|ok
+precomposed accents|ééé|ok
+emoji simple|😀😀😀|ok
+emoji zwj|👩‍💻👨‍👩‍👧‍👦|ok
+emoji modifier|👋🏽👋🏿|ok
+emoji flags|🇳🇴🇯🇵|ok
+emoji keycaps|1️⃣2️⃣3️⃣|ok
+box drawing|┌─┐│ │└─┘|ok
+maths symbols|∑∏∫√|ok
+mixed ascii emoji|Hello 👋 World|ok
+mixed cjk emoji|漢字 😀 かな|ok
+quoted unicode|"こんにちは 😀"|ok
+quoted combining|"é + 👩‍💻"|ok

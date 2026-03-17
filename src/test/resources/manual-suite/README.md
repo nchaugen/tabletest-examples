@@ -22,7 +22,8 @@ Open these files in this order:
 4. `LegacyJavaManualSuiteProbe.java`
 5. `LegacyKotlinManualSuiteProbe.kt`
 6. `manual-valid-unformatted.table`
-7. `manual-invalid-*.table` in numerical order
+7. `manual-unicode-width.table`
+8. `manual-invalid-*.table` in numerical order
 
 Manual verification checklist:
 
@@ -31,6 +32,7 @@ Manual verification checklist:
 - In every valid corpus, confirm there are no diagnostics.
 - In every invalid corpus, confirm one diagnostic appears for the single bad table under each expectation comment.
 - In the standalone invalid `.table` probes, confirm each file contains exactly one bad table and produces exactly one diagnostic.
+- In `manual-unicode-width.table`, run format document and check where the second column's trailing pipe lands for each row. This file is specifically for comparing Unicode width behaviour across accented Latin, combining marks, CJK, Hangul, emoji, flags, keycaps, and ZWJ sequences.
 - Run format document on Java text blocks, Java string arrays, Kotlin raw strings, `manual-valid-unformatted.table`, and a few representative `manual-invalid-*.table` files.
 - In `manual-valid-unformatted.table`, also run format selection on just one table and confirm only that table changes.
 - Confirm formatting fixes row indentation, column alignment, comment alignment, and collection normalisation without changing quoted content.
